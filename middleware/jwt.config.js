@@ -14,6 +14,9 @@ exports.createToken=(data)=>{
 }
 
 exports.verifyToken=async(req,res,next)=>{
+  try{
+
+  
      const processToken=process.env.SECRET
      console.log(req?.headers?.authorization)
     const headerToken=req?.headers?.authorization?.split(" ")[1]
@@ -21,6 +24,7 @@ exports.verifyToken=async(req,res,next)=>{
       res.status(401).send("Unauthorized Login")
       return
     }
+    console.log("____________________________-")
     const token= JWT.verify(headerToken,processToken)
 
     if(!token){
@@ -29,4 +33,7 @@ exports.verifyToken=async(req,res,next)=>{
     }
     req.user=token.id
     next()
+  }catch(err){
+    return res.status(401).send("Unauthorized")
+  }
 }

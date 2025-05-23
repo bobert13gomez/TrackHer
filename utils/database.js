@@ -8,6 +8,7 @@ exports.createSchema=({name,Schema})=>{
     let ShemaType=new mongoose.Schema(Schema,{timestamps:true})
     const lumel=mongoose.model(name,ShemaType)
     return lumel
+    
     }catch(err){
         logger.error(err)
     }

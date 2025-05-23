@@ -3,7 +3,7 @@ const { lumel } = require('../model/user.model')
 const { logger } = require('../utils/logger')
 
 exports.createUser=async(req,res)=>{
-    return
+
 try{
 if(req.body.password){
     const salt=await bcrypt.genSalt(10)
